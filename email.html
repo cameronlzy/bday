@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>$300 SGD Voucher</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap");
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --lime: #c8f135;
+        --coral: #ff5c5c;
+        --sky: #5ce1ff;
+        --ink: #1a1a2e;
+        --white: #ffffff;
+      }
+
+      body {
+        font-family: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+        background: linear-gradient(
+          135deg,
+          #e8f4ff 0%,
+          #f5e8ff 50%,
+          #fff5e8 100%
+        );
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 32px 16px;
+      }
+
+      .page-wrapper {
+        width: 100%;
+        max-width: 500px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .page-label {
+        font-family: "Syne", "Arial Black", sans-serif;
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #8a90a8;
+        text-align: center;
+      }
+
+      /* ── VOUCHER CARD ── */
+      .voucher {
+        background: var(--ink);
+        border-radius: 28px;
+        overflow: hidden;
+        position: relative;
+        box-shadow:
+          0 24px 64px rgba(26, 26, 46, 0.3),
+          0 0 0 1.5px rgba(255, 255, 255, 0.06);
+        animation: floatIn 0.5s ease both;
+      }
+
+      .blob {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.15;
+        pointer-events: none;
+        filter: blur(2px);
+      }
+      .blob-1 {
+        width: 280px;
+        height: 280px;
+        background: var(--lime);
+        top: -90px;
+        right: -70px;
+      }
+      .blob-2 {
+        width: 200px;
+        height: 200px;
+        background: var(--coral);
+        bottom: -70px;
+        left: -50px;
+      }
+      .blob-3 {
+        width: 140px;
+        height: 140px;
+        background: var(--sky);
+        top: 55%;
+        left: 35%;
+        transform: translate(-50%, -50%);
+      }
+
+      .voucher-inner {
+        position: relative;
+        z-index: 1;
+        padding: 44px 40px 40px;
+      }
+
+      .voucher-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--lime);
+        color: var(--ink);
+        font-family: "Syne", "Arial Black", sans-serif;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        padding: 6px 14px;
+        border-radius: 100px;
+        margin-bottom: 32px;
+      }
+
+      .voucher-amount {
+        font-family: "Syne", "Arial Black", sans-serif;
+        font-size: 88px;
+        font-weight: 800;
+        line-height: 0.88;
+        color: var(--white);
+        letter-spacing: -0.03em;
+      }
+      .voucher-amount .dollar {
+        color: var(--lime);
+      }
+
+      .voucher-subtitle {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 14px;
+        font-weight: 500;
+        margin-top: 14px;
+      }
+
+      .tear {
+        border: none;
+        border-top: 2px dashed rgba(255, 255, 255, 0.1);
+        margin: 30px 0;
+      }
+
+      .categories {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 28px;
+      }
+      .cat-pill {
+        background: var(--sky);
+        color: var(--ink);
+        font-size: 12px;
+        font-weight: 700;
+        padding: 7px 16px;
+        border-radius: 100px;
+      }
+
+      .gift-msg {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        padding: 20px 22px;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+      .gift-msg strong {
+        color: var(--white);
+        font-weight: 600;
+      }
+
+      .voucher-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 28px;
+      }
+      .code-box {
+        background: var(--coral);
+        color: var(--white);
+        font-family: "Syne", "Arial Black", sans-serif;
+        font-size: 15px;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        padding: 9px 18px;
+        border-radius: 10px;
+      }
+      .expiry {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.32);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      /* ── SEND PANEL ── */
+      .send-panel {
+        background: var(--white);
+        border-radius: 22px;
+        padding: 30px;
+        box-shadow: 0 4px 24px rgba(26, 26, 46, 0.08);
+        animation: floatIn 0.5s 0.12s ease both;
+      }
+
+      .send-title {
+        font-family: "Syne", "Arial Black", sans-serif;
+        font-size: 18px;
+        font-weight: 800;
+        color: var(--ink);
+        margin-bottom: 6px;
+      }
+      .send-desc {
+        font-size: 13px;
+        color: #6b7280;
+        margin-bottom: 20px;
+        line-height: 1.55;
+      }
+
+      .send-btn {
+        width: 100%;
+        padding: 16px;
+        background: var(--ink);
+        color: var(--lime);
+        font-family: "Syne", "Arial Black", sans-serif;
+        font-size: 14px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        border: none;
+        border-radius: 14px;
+        cursor: pointer;
+        transition:
+          transform 0.15s,
+          box-shadow 0.15s,
+          background 0.15s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+      .send-btn:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 28px rgba(26, 26, 46, 0.25);
+        background: #2d2d4e;
+      }
+      .send-btn:active:not(:disabled) {
+        transform: translateY(0);
+      }
+      .send-btn:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+      }
+
+      .status-msg {
+        margin-top: 12px;
+        font-size: 13px;
+        text-align: center;
+        border-radius: 10px;
+        padding: 11px 16px;
+        display: none;
+        font-weight: 500;
+      }
+      .status-msg.success {
+        display: block;
+        background: #ecfdf5;
+        color: #065f46;
+      }
+      .status-msg.error {
+        display: block;
+        background: #fef2f2;
+        color: #991b1b;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .spinner {
+        width: 16px;
+        height: 16px;
+        border: 2.5px solid rgba(200, 241, 53, 0.3);
+        border-top-color: var(--lime);
+        border-radius: 50%;
+        animation: spin 0.7s linear infinite;
+        display: none;
+        flex-shrink: 0;
+      }
+
+      @keyframes floatIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <p class="page-label">🎁 You've received a gift voucher</p>
+
+      <div class="voucher">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+
+        <div class="voucher-inner">
+          <div class="voucher-tag">✦ Special Gift Voucher</div>
+
+          <div class="voucher-amount">
+            <span class="dollar">$300</span><br />SGD
+          </div>
+          <p class="voucher-subtitle">Treat yourself to something amazing ✨</p>
+
+          <hr class="tear" />
+
+          <div class="categories">
+            <div class="cat-pill">👗 Clothing</div>
+            <div class="cat-pill">👜 Accessories</div>
+            <div class="cat-pill">💆 Treatments</div>
+          </div>
+
+          <div class="gift-msg">
+            <strong>Hiiii babyyy! 🎉</strong><br />
+            You've got a <strong>$300 SGD</strong> voucher waiting to be used —
+            pick anything from clothes, accessories, or treatments. Can pick
+            anything you wantt 🛍️
+          </div>
+
+          <div class="voucher-footer">
+            <div class="code-box">TREAT300</div>
+            <div class="expiry">Valid · 600 years</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="send-panel">
+        <div class="send-title">Redeem this voucher 🎀</div>
+        <p class="send-desc">
+          Hit the button below to notify Baobao that you want to use your $300
+          SGD gift voucher. 🛍️
+        </p>
+
+        <button class="send-btn" id="sendBtn" onclick="sendVoucher()">
+          <div class="spinner" id="spinner"></div>
+          <span id="btnText">🎀 &nbsp;I Want to Use My Voucher!</span>
+        </button>
+
+        <div class="status-msg" id="statusMsg"></div>
+      </div>
+    </div>
+
+    <script>
+      async function sendVoucher() {
+        const token = "8c9aad630570f8d84ddc1658f334939f"
+
+        const btn = document.getElementById("sendBtn")
+        const spinner = document.getElementById("spinner")
+        const btnText = document.getElementById("btnText")
+
+        btn.disabled = true
+        spinner.style.display = "block"
+        btnText.style.display = "none"
+
+        const emailHtml = `<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"/></head>
+<body style="font-family:'Helvetica Neue',Arial,sans-serif;background:#F0F5FF;margin:0;padding:32px 16px;">
+  <div style="max-width:480px;margin:0 auto;background:#1A1A2E;border-radius:24px;padding:40px 36px;">
+    <div style="display:inline-block;background:#C8F135;color:#1A1A2E;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:5px 14px;border-radius:100px;margin-bottom:24px;">✦ Voucher Redemption</div>
+    <div style="font-size:72px;font-weight:800;line-height:0.9;color:#fff;letter-spacing:-0.03em;"><span style="color:#C8F135;">$300</span><br>SGD</div>
+    <p style="color:rgba(255,255,255,0.55);font-size:14px;margin-top:12px;">I want to use my voucher! 🎉</p>
+    <hr style="border:none;border-top:2px dashed rgba(255,255,255,0.12);margin:24px 0;"/>
+    <div style="background:rgba(255,255,255,0.07);border-radius:14px;padding:18px 20px;color:rgba(255,255,255,0.75);font-size:14px;line-height:1.65;">
+      Hey Cameron! 👋<br/><br/>
+      I'd love to redeem my <strong style="color:#fff;">$300 SGD gift voucher</strong>. I'm keen to use it on clothes, accessories, or treatments — please let me know how to proceed! 🛍️
+    </div>
+    <div style="margin-top:24px;display:flex;justify-content:space-between;align-items:center;">
+      <div style="background:#FF5C5C;color:#fff;font-size:14px;font-weight:800;letter-spacing:0.1em;padding:8px 16px;border-radius:10px;">TREAT300</div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.06em;">Sent with love 💌</div>
+    </div>
+  </div>
+</body>
+</html>`
+
+        const payload = {
+          from: { email: "hello@docflow-app.com", name: "Gift Voucher" },
+          to: [{ email: "cameronlzy@gmail.com", name: "Cameron" }],
+          subject: "🎀 I Want to Use My $300 SGD Voucher!",
+          html: emailHtml,
+          text: "Hey Cameron! I'd love to redeem my $300 SGD gift voucher. Code: TREAT300. Please let me know how to proceed!",
+        }
+
+        try {
+          const res = await fetch("https://send.api.mailtrap.io/api/send", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Api-Token": token,
+            },
+            body: JSON.stringify(payload),
+          })
+
+          const data = await res.json()
+
+          if (res.ok && (data.success || data.message_ids)) {
+            showStatus(
+              "success",
+              "🎉 Sent to Cameron! Check your Mailtrap sent folder.",
+            )
+            btnText.textContent = "✅ Sent!"
+            btn.disabled = false
+            spinner.style.display = "none"
+            btnText.style.display = "block"
+          } else {
+            const errMsg =
+              data?.errors?.join(", ") || data?.message || "Unknown error"
+            showStatus("error", "Send failed: " + errMsg)
+            resetBtn()
+          }
+        } catch (err) {
+          showStatus("error", "Oops need tell manually, error: " + err.message)
+          resetBtn()
+        }
+      }
+
+      function showStatus(type, msg) {
+        const el = document.getElementById("statusMsg")
+        el.className = "status-msg " + type
+        el.textContent = msg
+      }
+
+      function resetBtn() {
+        const btn = document.getElementById("sendBtn")
+        const spinner = document.getElementById("spinner")
+        const btnText = document.getElementById("btnText")
+        btn.disabled = false
+        spinner.style.display = "none"
+        btnText.style.display = "block"
+        btnText.textContent = "🎀  I Want to Use My Voucher!"
+      }
+    </script>
+  </body>
+</html>
